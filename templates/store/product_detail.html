@@ -43,22 +43,19 @@
         
         
         <hr>
-            <div class="row">
-
-
-              {% if single_product.variation_set.colors %}
-                <div class="item-option-select" >
-                    <h6>Choose Color</h6>
-                    <select name="colour"  class="form-control">
-                      <option value="" disabled selected>select</option>
-                      {% for i in single_product.variation_set.colors %}
-                      <option value="{{i.variation_value | lower}}" >{{i.variation_value | capfirst}}</option>
-                      {% endfor %}
-                        
-                    </select> 
-                </div>
-               {% endif %}
-            </div> <!-- row.// -->
+        {% if single_product.variation_set.colors %}
+        <div class="row">
+            <div class="item-option-select">
+                <h6>Choose Color</h6>
+                <select name="color" class="form-control" required>
+                    <option value="" disabled selected>Select</option>
+                    {% for i in single_product.variation_set.colors %}
+                    <option value="{{ i.variation_value | lower }}">{{ i.variation_value | capfirst }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div> <!-- row.// -->
+        {% endif %}
 
 
 
@@ -84,18 +81,8 @@
 
                 {% else %}
 
-                    
-                    {% if in_cart %}
-                      
-                    <a href="{% url 'add_cart' single_product.id %}" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-check"></i>  </a>
-                    <a href="{% url 'cart' %}" class="btn  btn-outline-primary"> <span class="text">Add to cart</span> <i class="fas fa-eye"></i>  </a>
-
-
-                    {% else %}
-                    
                   <button type="submit" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </button>
 
-                {% endif %}
               {% endif %}
         
             
@@ -146,4 +133,3 @@
     <!-- ========================= SECTION CONTENT END// ========================= -->
     
 {% endblock content %}
-    
