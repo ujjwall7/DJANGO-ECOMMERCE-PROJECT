@@ -110,7 +110,7 @@ def login(request):
                 pass
             auth.login(request, user)
             messages.success(request, 'You are now logged in.')
-            url = requests.META.get('HTTP_REFERER')
+            url = request.META.get('HTTP_REFERER')
             try:
                 query = requests.utils.urlparse(url).query
                 # next=/cart/checkout/
@@ -187,7 +187,7 @@ def forgotPassword(request):
         else:
             messages.error(request, 'Account does not exist!')
             return redirect('forgotPassword')
-    return render(request, 'accounts/forgotPassword.html')
+    return render(request, 'accounts/ForgotPassword.html')
 
 
 def resetpassword_validate(request, uidb64, token):
@@ -222,7 +222,7 @@ def resetPassword(request):
             messages.error(request, 'Password do not match!')
             return redirect('resetPassword')
     else:
-        return render(request, 'accounts/resetPassword.html')
+        return render(request, 'accounts/ResetPassword.html')
 
 
 @login_required(login_url='login')
@@ -253,7 +253,7 @@ def edit_profile(request):
         'profile_form': profile_form,
         'userprofile': userprofile,
     }
-    return render(request, 'accounts/edit_profile.html', context)
+    return render(request, 'accounts/Edit_Profile.html', context)
 
 
 @login_required(login_url='login')
