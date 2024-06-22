@@ -26,7 +26,7 @@ SECRET_KEY = 'sq3&lt6lsz^i_p6t4e-i*02@w345lyfobt4#kizzme-kkrwc$n'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -150,8 +150,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 MEDIA_URL="media/"
 
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = "ujjwal@gftpl.in"
+EMAIL_HOST_PASSWORD = "SharmA@Django"
+EMAIL_PORT = 587
 
 
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+}
 
 if DEBUG:
   STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
