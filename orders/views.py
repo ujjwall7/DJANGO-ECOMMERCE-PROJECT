@@ -74,6 +74,7 @@ def payments(request):
         'transID': payment.payment_id,
     }
     return JsonResponse(data)
+    
 
 def place_order(request, total=0, quantity=0,):
     current_user = request.user
