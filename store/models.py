@@ -42,9 +42,13 @@ class Product(models.Model):
 
 
 
+
+
 variation_category_choice = (
     ('color', 'color'),
     ('size', 'size'),
+    ('design','design'),
+    ('fabric','fabric')
 )
 
 class VariationManager(models.Manager):
@@ -54,6 +58,11 @@ class VariationManager(models.Manager):
     def sizes(self):
         return super(VariationManager, self).filter(variation_category='size', is_active=True)
 
+    def fabrics(self):
+        return super(VariationManager, self).filter(variation_category='fabric', is_active=True)
+
+    def designs(self):
+        return super(VariationManager, self).filter(variation_category='design', is_active=True)
 
 
 class Variation(models.Model):

@@ -160,6 +160,7 @@ def place_order(request, total=0, quantity=0,):
 
     # If the cart count is less than or equal to 0, then redirect back to shop
     cart_items = CartItem.objects.filter(user=current_user)
+    print(cart_items)
     cart_count = cart_items.count()
     if cart_count <= 0:
         return redirect('store')
@@ -167,6 +168,7 @@ def place_order(request, total=0, quantity=0,):
     grand_total = 0
     tax = 0
     for cart_item in cart_items:
+        print(f"{cart_item = }")
         total += (cart_item.product.price * cart_item.quantity)
         quantity += cart_item.quantity
     tax = (2 * total)/100
